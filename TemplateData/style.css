@@ -1,0 +1,46 @@
+@font-face {
+    font-family: gameFont;
+    src: url('./Comfortaa-VariableFont_wght.ttf') format('truetype');
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: gameFont;
+}
+
+body {
+    overflow: hidden;
+}
+
+body,
+.quiz_game {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+.quiz_game .background_frame {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('./background.png');
+    background-size: 100% 100%;
+}
+
+.quiz_game .background_frame .background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('./background.png');
+    background-size: auto 130%;
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    backdrop-filter: blur(10px);
+}
