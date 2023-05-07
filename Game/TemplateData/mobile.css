@@ -3,7 +3,7 @@
         padding-left: 10px;
         padding-right: 10px;
     }
-    .menuNav button{
+    button{
         height: 120px;
         margin-top: 10px;
     }
@@ -22,5 +22,13 @@
     }
     button:active{
         transform: scale(.9);
+    }
+    #categorybuttons{
+        margin-top: 20px;
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+    #categorybuttons button{
+        height: 80px;
     }
 }
