@@ -1,0 +1,165 @@
+@font-face {
+    font-family: gameFont;
+    src: url('./gameFont.ttf') format('truetype');
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: gameFont;
+    font-size: 30px;
+
+    -moz-user-select: none;
+    user-select: none;
+}
+
+body {
+    overflow: hidden;
+    font-size: 30px;
+}
+
+body,
+.quiz_game {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+.quiz_game .background_frame {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('./background.png');
+    background-size: 100% 100%;
+}
+
+.quiz_game .background_frame .background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('./background.png');
+    background-size: auto 130%;
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    backdrop-filter: blur(10px);
+}
+
+.quiz_game .frames{
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+.frame{
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    padding: 40px;
+    box-sizing: border-box;
+
+    transition: 1s
+}
+
+
+#menuFrame{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.menuNav{
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    padding-left: 60px;
+    padding-right: 60px;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 50px;
+}
+
+button{
+    width: 100%;
+    height: 70px;
+    margin-top: 20px;
+    border-radius: 40px;
+    outline: none;
+    border: none;
+}
+
+@keyframes showButton {
+    0%{
+        transform: scaleX(0) rotate(-90deg);
+    }
+
+    70%{
+        transform: scaleX(1) rotate(3deg);
+    }
+    90%{
+        transform: scaleX(1) rotate(-1deg);
+    }
+    100%{
+        transform: scaleX(1) rotate(0deg);
+    }
+}
+
+#gameTitle{
+    height: auto;
+    text-align: center;
+    font-weight: bold;
+    font-size: 60px;
+    margin-top: 20px;
+    text-shadow:  1px 1px 3px gray;
+}
+.lg_block{
+    width: 100%;
+    height: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+#logotype{
+    width:  300px;
+    height: 100%;
+    background-image: url('./logo.png');
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    background-size: auto 100%;
+
+    border-radius: 20px;
+}
+
+button{
+    transition: .2s;
+}
+button:hover{
+    transform: scale(1.05);
+}
+button:active{
+    transform: scale(.9);
+}
+
+.hide{
+    transform: translateY(-100%);
+}
+
+.choseTitle{
+    font-size: 60px;
+    text-align: center;
+}
+
+#chose_backmenu{
+    margin-top: 30px;
+    bottom: 50px;
+}
