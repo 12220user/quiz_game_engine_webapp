@@ -204,3 +204,57 @@ button:active{
     left: 50px;
     right: 50px;
 }
+
+.fullpage{
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+.centerContent{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.subHide{
+    display: none;
+}
+
+#answersList {
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    min-height: 50%;
+    align-items: center;
+}
+
+#answersList button{
+    width: 90%;
+}
+#questionContainer{
+    position: absolute;
+    top: 50px;
+}
+
+.buttonAnimation{
+    animation: showButton .5s;
+}
+#gametimer{
+    width: 100%;
+    position: absolute;
+    bottom: 10px;
+    text-align: center;
+}
+#qestionImg{
+    margin-top: 60px;
+    min-width: 800px;
+    height: 280px;
+    background-position: 50% 50%;
+    background-size: auto 100%;
+    border-radius: 20px;
+    background-repeat: no-repeat;
+}

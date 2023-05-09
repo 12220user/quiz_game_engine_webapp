@@ -3,7 +3,8 @@ const projectData = {
         Title: "Название игры",
         useLocalization: false,
         isPlayMusick: true,
-        bgBlurSize: 0
+        bgBlurSize: 0,
+        questionTime: 15
     },
     colors:{
         fontColor: '#fff',
@@ -12,4 +13,4 @@ const projectData = {
         recordFrameColor: 'rgba(0,0,0,.3)'
     }
 }
-const quiz = [{"category": "Математика", "questions": [{"answers": ["2", "3", "4", "5"], "question": "Сколько будет 2+2?", "hard": 1, "right": 1}, {"answers": ["2", "3", "4", "5"], "question": "Сколько будет 2+3?", "hard": 3, "right": 1}]}, {"category": "Русский", "questions": [{"answers": ["1", "2"], "question": "yes?", "hard": 1, "right": 0}]}]
+const quiz =[{"category": "Математика", "questions": [{"answers": ["2", "3", "4", "5"], "question": "Сколько будет 2+2?", "img":"1.png", "hard": 1, "right": 1}, {"answers": ["2", "3", "4", "5"], "question": "Сколько будет 2+3?", "hard": 3, "right": 1}]}]
