@@ -1,16 +1,17 @@
 const projectData = {
     game_data: {
-        Title: "Название игры",
+        Title: "тест на гея",
         useLocalization: false,
-        isPlayMusick: true,
+        isPlayMusick: false,
         bgBlurSize: 0,
-        questionTime: 15
+        questionTime: 15,
+        questionStepTime: 5
     },
-    colors:{
+    colors: {
         fontColor: '#fff',
         buttonsColor: '#6060FF',
         choseFrameColor: 'rgba(0,0,0,0)',
-        recordFrameColor: 'rgba(0,0,0,.3)'
+        recordFrameColor: 'rgba(0,0,0,0)'
     }
 }
-const quiz =[{"category": "Математика", "questions": [{"answers": ["2", "3", "4", "5"], "question": "Сколько будет 2+2?", "img":"1.png", "hard": 1, "right": 1}, {"answers": ["2", "3", "4", "5"], "question": "Сколько будет 2+3?", "hard": 3, "right": 1}]}]
+const quiz = [{ "category": "Математика", "questions": [{ "answers": ["2", "3", "4", "5"], "question": "Сколько будет 2+2?", "img": "1.png", "hard": 1, "right": 1 }, { "answers": ["2", "3", "4", "5"], "question": "Сколько будет 2+3?", "hard": 3, "right": 1 }] }]

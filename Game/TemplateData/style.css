@@ -8,7 +8,6 @@
     padding: 0;
     font-family: gameFont;
     font-size: 30px;
-
     -moz-user-select: none;
     user-select: none;
 }
@@ -34,7 +33,7 @@ body,
     left: 0;
     right: 0;
     bottom: 0;
-    background-image: url('./background.png');
+    background-image: url('../ProjectData/background.png');
     background-size: 100% 100%;
 }
 
@@ -44,44 +43,41 @@ body,
     left: 0;
     right: 0;
     bottom: 0;
-    background-image: url('./background.png');
+    background-image: url('../ProjectData/background.png');
     background-size: auto 130%;
     background-position: 50% 50%;
     background-repeat: no-repeat;
     backdrop-filter: blur(10px);
 }
 
-.quiz_game .frames{
+.quiz_game .frames {
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
 }
-.frame{
+
+.frame {
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
-
     padding: 40px;
     box-sizing: border-box;
-
     transition: .8s;
-
     display: flex;
     flex-direction: column;
 }
 
-
-#menuFrame{
+#menuFrame {
     width: 100%;
     display: flex;
     flex-direction: column;
 }
 
-.menuNav{
+.menuNav {
     display: flex;
     flex-direction: column;
     box-sizing: border-box;
@@ -93,7 +89,7 @@ body,
     bottom: 50px;
 }
 
-button{
+button {
     width: 100%;
     height: 70px;
     margin-top: 20px;
@@ -102,110 +98,121 @@ button{
     border: none;
 }
 
-@keyframes frameShow{
-    0%{transform: translateY(-100%);} 100%{transform: translateY(0%);}
+@keyframes frameShow {
+    0% {
+        transform: translateY(-100%);
+    }
+    100% {
+        transform: translateY(0%);
+    }
 }
 
 @keyframes showButton {
-    0%{
+    0% {
         transform: scaleX(0) rotate(-90deg);
     }
-
-    70%{
+    70% {
         transform: scaleX(1) rotate(3deg);
     }
-    90%{
+    90% {
         transform: scaleX(1) rotate(-1deg);
     }
-    100%{
+    100% {
         transform: scaleX(1) rotate(0deg);
     }
 }
 
-#gameTitle{
+#gameTitle {
     height: auto;
     text-align: center;
     font-weight: bold;
     font-size: 60px;
     margin-top: 20px;
-    text-shadow:  1px 1px 3px gray;
+    text-shadow: 1px 1px 3px gray;
 }
-.lg_block{
+
+.lg_block {
     width: 100%;
     height: 300px;
     display: flex;
     align-items: center;
     justify-content: center;
 }
-#logotype{
-    width:  300px;
+
+#logotype {
+    width: 300px;
     height: 100%;
-    background-image: url('./logo.png');
+    background-image: url('../ProjectData/logo.png');
     background-position: 50% 50%;
     background-repeat: no-repeat;
     background-size: auto 100%;
-
     border-radius: 20px;
 }
 
-button{
+button {
     transition: .2s;
 }
-button:hover{
+
+button:hover {
     transform: scale(1.05);
 }
-button:active{
+
+button:active {
     transform: scale(.9);
 }
 
-.hide{
-    transform: translateY(100%)  rotateY(90deg);
+.hide {
+    transform: translateY(100%) rotateY(90deg);
+    opacity: 0;
     z-index: -1;
 }
 
-.choseTitle{
+.choseTitle {
     font-size: 60px;
     text-align: center;
 }
 
-#chose_backmenu{
+#chose_backmenu,
+#settings_backmenu {
     position: absolute;
     margin-top: 30px;
     bottom: 50px;
-    width: auto ;
+    width: auto;
     left: 50px;
     right: 50px;
 }
 
-#categorybuttons{
+#categorybuttons {
     margin-left: 100px;
     margin-right: 100px;
 }
 
-.recordObj{
+.recordObj {
     display: flex;
     margin-top: 20px;
     align-items: center;
     justify-content: center;
 }
 
-.RecordValue{
+.RecordValue {
     box-sizing: border-box;
     padding-left: 20px;
 }
-.text{
+
+.text {
     text-shadow: 1px 1px 5px gray;
 }
-.bottom_button{
+
+.bottom_button {
     position: absolute;
     margin-top: 30px;
     bottom: 50px;
-    width: auto ;
+    width: auto;
     left: 50px;
     right: 50px;
 }
 
-.fullpage{
+.fullpage {
     position: absolute;
     top: 0;
     left: 0;
@@ -213,15 +220,16 @@ button:active{
     bottom: 0;
 }
 
-.centerContent{
+.centerContent {
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
 }
 
-.subHide{
-    display: none;
+.subHide {
+    /*display: none;*/
+    transform: scale(0);
 }
 
 #answersList {
@@ -232,24 +240,27 @@ button:active{
     align-items: center;
 }
 
-#answersList button{
+#answersList button {
     width: 90%;
 }
-#questionContainer{
+
+#questionContainer {
     position: absolute;
     top: 50px;
 }
 
-.buttonAnimation{
+.buttonAnimation {
     animation: showButton .5s;
 }
-#gametimer{
+
+#gametimer {
     width: 100%;
     position: absolute;
     bottom: 10px;
     text-align: center;
 }
-#qestionImg{
+
+#qestionImg {
     margin-top: 60px;
     min-width: 800px;
     height: 280px;
@@ -257,4 +268,28 @@ button:active{
     background-size: auto 100%;
     border-radius: 20px;
     background-repeat: no-repeat;
+}
+
+.middleText {
+    text-align: center;
+}
+
+#quizGame,
+#quizSuccsec,
+#quizResultGameWin,
+#quizResultGameLose {
+    transition: .3s;
+}
+
+#quizResultGameLose {
+    background-color: rgb(231, 64, 64);
+}
+
+.btn_container {
+    margin-left: 50px;
+    margin-right: 50px;
+}
+
+#quizSuccsec {
+    background-color: rgb(59, 190, 59);
 }

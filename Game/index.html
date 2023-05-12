@@ -42,41 +42,61 @@
 
                 </div>
                 <button id="chose_backmenu">Назад</button>
+            </div>
+        </div>
+
+        <div class="frame hide" id="recordFrame">
+            <div class="choseTitle text">Таблица рекордов</div>
+            <div class="text" style="text-align: center;margin-top: 20px;">70%</div>
+            <div class="records">
+                <div class="recordObj" id="recordContainer">
+                    <div class="Name text">Решено верно из категории А</div>
+                    <div class="RecordValue text">10/25</div>
+
                 </div>
             </div>
+            <button id="record_backmenu" class="bottom_button">Назад</button>
+        </div>
 
-            <div class="frame hide" id="recordFrame">
-                <div class="choseTitle text">Таблица рекордов</div>
-                <div class="text" style="text-align: center;margin-top: 20px;">70%</div>
-                <div class="records">
-                    <div class="recordObj" id="recordContainer">
-                        <div class="Name text">Решено верно из категории А</div>
-                        <div class="RecordValue text">10/25</div>
-                        
-                    </div>
+        <div class="frame hide" id="settingsFrame">
+            <div class="choseTitle text">Настройки</div>
+            <div class="text middleText">Громкость музыки</div>
+            <input type="range" name="" id="">
+            <button id="settings_backmenu">Назад</button>
+        </div>
+
+
+        <div class="frame hide" id="gameFrame">
+            <div class="fullpage centerContent" id="quizGame">
+                <p class="text timer" id="gametimer"></p>
+                <p id="questionContainer" class="text">Вопрос</p>
+                <div id="qestionImg"></div>
+                <div id="answersList">
+
                 </div>
-                <button id="record_backmenu"class="bottom_button">Назад</button>
             </div>
-            
+            <div class="fullpage centerContent subHide" id="quizSuccsec">
+                <p class="text" style="font-size: 60px;">Правильный ответ</p>
+                <p class="text">Новый вопрос через <span id="next_question_timer">5</span> c</p>
+            </div>
 
-            <div class="frame hide" id="gameFrame">
-                <div class="fullpage centerContent" id="quizGame">
-                    <p class="text timer" id="gametimer"></p>
-                    <p id="questionContainer"class="text">Вопрос</p>
-                    <div id="qestionImg"></div>
-                    <div id="answersList">
-                        
-                    </div>
-                </div>
-                
-                <div class="fullpage centerContent subHide" id="quizTransition">
+            <div class="fullpage centerContent subHide" id="quizResultGameWin">
 
-                </div>
-                <div class="fullpage centerContent subHide" id="quizResultGame">
-
+            </div>
+            <div class="fullpage centerContent subHide" id="quizResultGameLose">
+                <p class="text centerContnetn">Вы проиграли
+                    <p> </p>
+                    <p class="text" id="lose_record_pesent">20/25</p>
+                    <p> </p>
+                    <p class="text" id="lose_record_text">20/25</p>
+                </p>
+                <div class="btn_container">
+                    <button onclick="restartGame()">Переиграть</button>
+                    <button onclick="goToMenu()">В меню</button>
                 </div>
             </div>
         </div>
+    </div>
     </div>
 
     <script src="./TemplateData/saveSystem.js"></script>
