@@ -87,12 +87,16 @@ let gameTask = {
         }
         // game won
         else {
-
+            let isNew = record.set(this.categoryIndex , this.currentRecord)
+            if(gameTimer.isRun) gameTimer.stop()
+            document.querySelector('#category_win_text').innerHTML = quiz[this.categoryIndex].category
+            this.frames.setState('win')
         }
     },
     lose: function() {
         document.querySelector('#lose_record_text').innerHTML = `${this.currentRecord}/${this.questionsList.length}`
         document.querySelector('#lose_record_pesent').innerHTML = `${Math.round((this.currentRecord/this.questionsList.length)*100)}%`
+        let isNew = record.set(this.categoryIndex , this.currentRecord)
         this.currentQuestion = undefined
             //console.log('false')
         this.frames.setState('lose')
@@ -145,6 +149,7 @@ let gameTimer = {
 let customSimpleTimer = {
     play: function(time, containerSelector, callback) {
         let container = document.querySelector(containerSelector)
+        container.innerHTML = time
         setTimeout(() => {
             time -= 1
             if (time > 0) {
@@ -171,6 +176,9 @@ function init() {
             bgAudioPlayer.play()
         }
     })
+
+
+    gameTask.frames.setState('game')
 
     document.getElementById('gameTitle').innerHTML = localize(projectData.game_data.Title)
     document.getElementById('gameTitle').style.color = projectData.colors.fontColor

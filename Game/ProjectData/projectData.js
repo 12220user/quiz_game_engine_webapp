@@ -1,11 +1,11 @@
 const projectData = {
     game_data: {
-        Title: "тест на гея",
+        Title: "тест",
         useLocalization: false,
         isPlayMusick: false,
         bgBlurSize: 0,
         questionTime: 15,
-        questionStepTime: 5
+        questionStepTime: 3
     },
     colors: {
         fontColor: '#fff',

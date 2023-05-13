@@ -230,6 +230,7 @@ button:active {
 .subHide {
     /*display: none;*/
     transform: scale(0);
+    opacity: 0;
 }
 
 #answersList {
@@ -290,6 +291,10 @@ button:active {
     margin-right: 50px;
 }
 
-#quizSuccsec {
+#quizSuccsec , #quizResultGameWin{
     background-color: rgb(59, 190, 59);
+}
+
+.btn_container button{
+    min-width: 250px;
 }
