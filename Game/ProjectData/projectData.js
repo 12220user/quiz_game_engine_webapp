@@ -2,7 +2,7 @@ const projectData = {
     game_data: {
         Title: "тест",
         useLocalization: false,
-        isPlayMusick: false,
+        isPlayMusick: true,
         bgBlurSize: 0,
         questionTime: 15,
         questionStepTime: 3
@@ -14,4 +14,4 @@ const projectData = {
         recordFrameColor: 'rgba(0,0,0,0)'
     }
 }
-const quiz = [{ "category": "Математика", "questions": [{ "answers": ["2", "3", "4", "5"], "question": "Сколько будет 2+2?", "img": "1.png", "hard": 1, "right": 1 }, { "answers": ["2", "3", "4", "5"], "question": "Сколько будет 2+3?", "hard": 3, "right": 1 }] }]
+const quiz = [{"category": "Математика", "questions": [{"answers": ["2", "3", "4", ""], "question": "Сколько будет 2+2?", "hard": 1, "right": 1, "img": ""}, {"answers": ["2", "3", "4", "5"], "question": "Сколько будет 2+3?", "hard": 3, "right": 1, "img": "1.png"}]}, {"category": "Русский", "questions": [{"answers": ["2"], "question": "yes?", "hard": 1, "right": 0, "img": "1"}]}]

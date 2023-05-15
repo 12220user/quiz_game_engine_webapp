@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QQGT</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <p>QUIZ QUESTION GENTOOLs</p>
+    </header>
+    <div class="block">
+        <p>Проекты</p>
+        <br>
+        <div id="projectNames">
+            
+        </div>
+        <br>
+        <input type="text" name="" id="addTitle">
+        <button onclick="addProject()">Добавить рабочую область</button>
+    </div>
+
+    <div class="block">
+        <h3>Редактор вопросов   <span id="cE"> Не выбран проект</span></h3>
+        <br>
+        <p>Категория: </p>
+        <input type="text" id="fCategory">
+        <p>Вопрос: </p>
+        <input type="text" id="fQ">
+        <p>Сложность </p>
+        <input type="range" name="" id="fH" min="0" max="10" value="0">
+        <p></p><br>
+        <p>* Не все поля ответа должны быть заполнены && отметьте галочкой верны ответ</p>
+        <br>
+        <p>Ответ 1</p>
+        <input type="text" id="fa1">
+        <input type="radio" name="r1" id="fr1" value="0" checked>
+        <p>Ответ 2</p>
+        <input type="text" id="fa2">
+        <input type="radio" name="r1" id="fr2" value="1">
+        <p>Ответ 3</p>
+        <input type="text" id="fa3">
+        <input type="radio" name="r1" id="fr3" value="2">
+        <p>Ответ 4</p>
+        <input type="text" id="fa4">
+        <input type="radio" name="r1" id="fr4" value="3">
+        <p></p><br>
+        <p>Путь к файлу изображения <sup>* если не требуется оставить пустым</sup></p>
+        <input type="text" id="fimg">
+        <p></p>
+        <br>
+        <button onclick="formToFormat()">Добавить</button>
+    </div>
+
+    <div class="block">
+        <h3>Текстовое представление</h3>
+        <p><sub>* формат данных -> category|question|hard|right|img(empty in dont needed)|ansver0|ansver1|...|answerN</sub></p>
+        <br>
+        <textarea name="" id="txt_area" cols="120" rows="10"></textarea>
+        <br>
+        <button onclick="convertLogic()"> Сгенерировать </button>
+    </div>
+
+    <div class="block">
+        <h2>Готовый объект</h2>
+        <button onclick="copy()">COPY</button>
+        <p id="result"></p>
+        <p></p><br><p></p><br><p></p><br><p></p><br><p></p><br>
+    </div>
+
+    <script src="file.js"></script>
+    <script src="./main.js"></script>
+</body>
+</html>

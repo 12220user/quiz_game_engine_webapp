@@ -298,3 +298,60 @@ button:active {
 .btn_container button{
     min-width: 250px;
 }
+
+.sl_sett{
+    margin-left: 50px;
+    margin-right: 50px;
+    margin-top: 20px;
+}
+
+
+#loadFrame{
+    background-color: black;
+    z-index: 20;
+    animation: loadScreen 3s;
+    opacity: 0;
+    transform: scale(0);
+}
+.loadLogo{
+    width: 300px;
+    height: 300px;
+    background: url('../ProjectData/logo.png');
+    border-radius: 20px;
+    background-size: 100% 100%;
+}
+
+.prg_bar{
+    width: 60%;
+    border: 3px solid rgb(213, 213, 213);
+    margin-top: 30px;
+    height: 30px;
+}
+.prg_bar .bar{
+    width: 100%;
+    background: #FFF;
+    height: 100%;
+}
+.s5{
+    animation: barLoad 3s;
+    animation-timing-function: ease-in;
+}
+
+@keyframes barLoad{
+    0%{
+        width: 1%;
+    }
+    99%{
+        width: 100%;
+    }
+}
+
+@keyframes loadScreen{
+    0% , 99%{
+        opacity: 1;
+        transform: scale(1);
+    }
+    100%{opacity: 0;
+        transform: scale(0);
+    }
+}

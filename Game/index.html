@@ -13,12 +13,21 @@
     <script src="https://yandex.ru/games/sdk/v2"></script>
     <script>
         YaGames.init().then(ysdk => {
-            // ...
+            console.log('Yandex SDK initialized');
+            window.ysdk = ysdk;
         });
     </script>
 </head>
 
 <body>
+    <div class="frame centerContent" id="loadFrame">
+        <div class="loadLogo"></div>
+        <div class="prg_bar">
+            <div class="bar s5">
+
+            </div>
+        </div>
+    </div>
     <div class="quiz_game">
         <div class="background_frame">
             <div class="background"></div>
@@ -47,12 +56,11 @@
 
         <div class="frame hide" id="recordFrame">
             <div class="choseTitle text">Таблица рекордов</div>
-            <div class="text" style="text-align: center;margin-top: 20px;">70%</div>
-            <div class="records">
-                <div class="recordObj" id="recordContainer">
+            <div class="text" style="text-align: center;margin-top: 20px;">Игра пройдена на <span id="game_r_per">100</span>%</div>
+            <div class="records" id="recordContainer">
+                <div class="recordObj" >
                     <div class="Name text">Решено верно из категории А</div>
                     <div class="RecordValue text">10/25</div>
-
                 </div>
             </div>
             <button id="record_backmenu" class="bottom_button">Назад</button>
@@ -61,7 +69,7 @@
         <div class="frame hide" id="settingsFrame">
             <div class="choseTitle text">Настройки</div>
             <div class="text middleText">Громкость музыки</div>
-            <input type="range" name="" id="">
+            <input type="range" name="" id="volume" class="sl_sett" value="50" min="0" max="100">
             <button id="settings_backmenu">Назад</button>
         </div>
 

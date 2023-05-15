@@ -1,10 +1,10 @@
 const save = {
     get: function(token , base){
         let str = localStorage.getItem(token)
-        return str == null || str == '' || str == NaN? base: parseInt(str)
+        return (str == null || str == '' || str == NaN)? base: parseInt(str)
     },
     set:function(token , obj){
-        localStorage.setItem(token , obj+'')
+        localStorage.setItem(token , obj)
     }
 }
 

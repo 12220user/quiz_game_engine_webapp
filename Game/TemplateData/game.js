@@ -1,7 +1,30 @@
 let addManager = {
     canShowAd: true,
-    showInterstitial: function() {
+    review:function(){
+        ysdk.feedback.canReview()
+        .then(({ value, reason }) => {
+            if (value) {
+                ysdk.feedback.requestReview()
+                    .then(({ feedbackSent }) => {
+                        console.log(feedbackSent);
+                    })
+            } else {
+                console.log(reason)
+            }
+        })
+    },
+    showInterstitial: function(callback) {
+        if(!this.canShowAd){
+            callback()
+            return
+        }
         this.canShowAd = false
+        ysdk.adv.showFullscreenAdv({
+            callbacks:{
+                onClose: function(w){callback()}
+            },
+            onError:function(e){callback()}
+        })
         setTimeout(() => { this.canShowAd = true }, 1000 * 60 * 3)
     }
 }
@@ -77,6 +100,7 @@ let gameTask = {
         this.currentQuestion = undefined
             //console.log('right')
         this.currentRecord += 1
+        //console.log(this.currentRecord)
             // next question
         if (this.currentRecord < this.questionsList.length) {
             this.frames.setState('right')
@@ -88,9 +112,11 @@ let gameTask = {
         // game won
         else {
             let isNew = record.set(this.categoryIndex , this.currentRecord)
+            //console.log( quiz[this.categoryIndex].category)
             if(gameTimer.isRun) gameTimer.stop()
             document.querySelector('#category_win_text').innerHTML = quiz[this.categoryIndex].category
             this.frames.setState('win')
+            this.isRun = false
         }
     },
     lose: function() {
@@ -108,7 +134,7 @@ let gameTask = {
         if (this.isRun) return
         this.currentRecord = 0;
         this.isRun = true
-        categoryIndex = category
+        this.categoryIndex = category
 
         // сортировка вопросов
         this.questionsList = shuffle(quiz[category].questions).sort(x => x.hard)
@@ -202,7 +228,7 @@ function init() {
     })
     document.querySelector('#chose_backmenu').addEventListener('click', () => { showHide('#choseFrame', '#menuFrame') })
     document.querySelector('#record_backmenu').addEventListener('click', () => { showHide('#recordFrame', '#menuFrame') })
-    document.querySelector('#menu_record').addEventListener('click', () => { showHide('#menuFrame', '#recordFrame') })
+    document.querySelector('#menu_record').addEventListener('click', () => { showHide('#menuFrame', '#recordFrame'); recordDraw() })
     document.querySelector('#settings_backmenu').addEventListener('click', () => { showHide('#settingsFrame', '#menuFrame') })
 
     if (!projectData.game_data.useLocalization && !projectData.game_data.isPlayMusick) {
@@ -225,9 +251,17 @@ function init() {
         buttons[i].style.color = projectData.colors.fontColor
     }
     if (projectData.game_data.isPlayMusick) {
+        let slider = document.querySelector('#volume')
+        slider.value = save.get('VOLUME' , 50)
+
         bgAudioPlayer = new Audio('./ProjectData/bgAudio.mp3')
-        bgAudioPlayer.volume = 1
+        bgAudioPlayer.volume = parseFloat(slider.value/100)
         bgAudioPlayer.onended = function() { bgAudioPlayer.play() }
+        slider.addEventListener('input' , (value)=>{
+            value = slider.value
+            save.set('VOLUME' , value)
+            bgAudioPlayer.volume = parseFloat(value/100)
+        })
     }
     //bgAudioPlayer.autoplay = true
 }
@@ -246,8 +280,10 @@ function drawCategoryButton(index) {
 }
 
 function clickCategoryButton(index) {
-    showHide('#menuFrame', '#gameFrame')
+    if(quiz.length == 1)showHide('#menuFrame', '#gameFrame')
+    else showHide('#choseFrame' , '#gameFrame')
     gameTask.questionsList = quiz[index]
+    console.log(index)
     gameTask.StartGame(index)
 }
 
@@ -266,7 +302,19 @@ function showHide(hide, show, classData = 'frame') {
 }
 
 function recordDraw() {
-
+    let container = document.querySelector('#recordContainer')
+    container.innerHTML = ''
+    let a = 0 , b = 0
+    for(let i = 0; i< quiz.length; i++){
+        container.innerHTML += `<div class="recordObj" style="color:${projectData.colors.fontColor};">
+        <div class="Name text">${quiz[i].category}</div>
+        <div class="RecordValue text">${record.get(i)}/${quiz[i].questions.length}</div>
+    </div>`
+        a+= quiz[i].questions.length
+        b+= record.get(i)
+    }
+    let result = Math.round(100*b/a)
+    document.querySelector('#game_r_per').innerHTML = result
 }
 
 function answer_showAnimateButtons(array, delay, finich = null) {
@@ -291,12 +339,16 @@ function clickAnswer(index) {
 }
 
 function goToMenu() {
+    addManager.showInterstitial(function(){})
+    addManager.review()
     gameTask.frames.setState('game')
     showHide("#gameFrame", "#menuFrame")
 }
 
 function restartGame() {
-    if (gameTask.categoryIndex != NaN || gameTask.categoryIndex != undefined) gameTask.StartGame(gameTask.categoryIndex)
+    addManager.showInterstitial(()=>{
+        if (gameTask.categoryIndex != NaN || gameTask.categoryIndex != undefined) gameTask.StartGame(gameTask.categoryIndex)
+    })
 }
 
 function shuffle(array) {
