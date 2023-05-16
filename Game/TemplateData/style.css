@@ -201,6 +201,7 @@ button:active {
 
 .text {
     text-shadow: 1px 1px 5px gray;
+    text-align: center;
 }
 
 .bottom_button {
@@ -234,6 +235,7 @@ button:active {
 }
 
 #answersList {
+    margin-bottom: 40px;
     width: 90%;
     display: flex;
     flex-direction: column;
@@ -246,8 +248,7 @@ button:active {
 }
 
 #questionContainer {
-    position: absolute;
-    top: 50px;
+    text-align: center;
 }
 
 .buttonAnimation {
@@ -291,29 +292,30 @@ button:active {
     margin-right: 50px;
 }
 
-#quizSuccsec , #quizResultGameWin{
+#quizSuccsec,
+#quizResultGameWin {
     background-color: rgb(59, 190, 59);
 }
 
-.btn_container button{
+.btn_container button {
     min-width: 250px;
 }
 
-.sl_sett{
+.sl_sett {
     margin-left: 50px;
     margin-right: 50px;
     margin-top: 20px;
 }
 
-
-#loadFrame{
+#loadFrame {
     background-color: black;
     z-index: 20;
     animation: loadScreen 3s;
     opacity: 0;
     transform: scale(0);
 }
-.loadLogo{
+
+.loadLogo {
     width: 300px;
     height: 300px;
     background: url('../ProjectData/logo.png');
@@ -321,37 +323,41 @@ button:active {
     background-size: 100% 100%;
 }
 
-.prg_bar{
+.prg_bar {
     width: 60%;
     border: 3px solid rgb(213, 213, 213);
     margin-top: 30px;
     height: 30px;
 }
-.prg_bar .bar{
+
+.prg_bar .bar {
     width: 100%;
     background: #FFF;
     height: 100%;
 }
-.s5{
+
+.s5 {
     animation: barLoad 3s;
     animation-timing-function: ease-in;
 }
 
-@keyframes barLoad{
-    0%{
+@keyframes barLoad {
+    0% {
         width: 1%;
     }
-    99%{
+    99% {
         width: 100%;
     }
 }
 
-@keyframes loadScreen{
-    0% , 99%{
+@keyframes loadScreen {
+    0%,
+    99% {
         opacity: 1;
         transform: scale(1);
     }
-    100%{opacity: 0;
+    100% {
+        opacity: 0;
         transform: scale(0);
     }
 }

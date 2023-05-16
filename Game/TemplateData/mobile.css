@@ -1,40 +1,43 @@
 @media screen and (orientation: portrait) {
-    .menuNav{
+    .menuNav {
         padding-left: 10px;
         padding-right: 10px;
     }
-    button{
+    button {
         height: 120px;
         margin-top: 10px;
     }
-    .lg_block{
+    .lg_block {
         height: 150px;
         border: 20px;
     }
-    #gameTitle{
+    #gameTitle {
         font-size: 35px;
     }
-    button{
+    button {
         transition: .2s;
     }
-    button:hover{
+    button:hover {
         transform: scale(1);
     }
-    button:active{
+    button:active {
         transform: scale(.9);
     }
-    #categorybuttons{
+    #categorybuttons {
         margin-top: 20px;
         margin-left: 10px;
         margin-right: 10px;
     }
-    #categorybuttons button{
+    #categorybuttons button {
         height: 80px;
+    }
+    * {
+        font-size: 26px;
     }
 }
 
-@media screen and (max-height:760 ) {
-    #quizGame{
+@media screen and (max-height:760) {
+    #quizGame {
         flex-wrap: wrap;
     }
 }
