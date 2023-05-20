@@ -13,7 +13,7 @@ const record = {
         return save.get('record-data-type-'+type , 0)
     },
     set:function(type , value){
-        if(record.get('record-data-type-'+type) < value)
+        if(record.get(type) < value)
         {
             save.set('record-data-type-'+type , value)
             return true

@@ -1,36 +1,62 @@
+/*
+░██████╗░██╗░░░██╗██╗███████╗  ███████╗███╗░░██╗░██████╗░██╗███╗░░██╗███████╗
+██╔═══██╗██║░░░██║██║╚════██║  ██╔════╝████╗░██║██╔════╝░██║████╗░██║██╔════╝
+██║██╗██║██║░░░██║██║░░███╔═╝  █████╗░░██╔██╗██║██║░░██╗░██║██╔██╗██║█████╗░░
+╚██████╔╝██║░░░██║██║██╔══╝░░  ██╔══╝░░██║╚████║██║░░╚██╗██║██║╚████║██╔══╝░░
+░╚═██╔═╝░╚██████╔╝██║███████╗  ███████╗██║░╚███║╚██████╔╝██║██║░╚███║███████╗
+░░░╚═╝░░░░╚═════╝░╚═╝╚══════╝  ╚══════╝╚═╝░░╚══╝░╚═════╝░╚═╝╚═╝░░╚══╝╚══════╝
+
+by 12220
+Version 1.0.0.2 realise
+actual version https://github.com/12220user/quiz_game_engine_webapp
+documentation - in progress
+*/
+
 let addManager = {
     canShowAd: true,
-    review: function() {
+    review:function(){
         ysdk.feedback.canReview()
-            .then(({ value, reason }) => {
-                if (value) {
-                    ysdk.feedback.requestReview()
-                        .then(({ feedbackSent }) => {
-                            console.log(feedbackSent);
-                        })
-                } else {
-                    console.log(reason)
-                }
-            })
+        .then(({ value, reason }) => {
+            if (value) {
+                ysdk.feedback.requestReview()
+                    .then(({ feedbackSent }) => {
+                        console.log(feedbackSent);
+                    })
+            } else {
+                console.log(reason)
+            }
+        })
     },
     showInterstitial: function(callback) {
-        if (!this.canShowAd) {
+        MuteAudio(true)
+        if(!this.canShowAd){
             callback()
+            MuteAudio(false)
             return
         }
         this.canShowAd = false
         ysdk.adv.showFullscreenAdv({
-            callbacks: {
-                onClose: function(w) { callback() }
+            callbacks:{
+                onClose: function(w){callback();MuteAudio(false)}
             },
-            onError: function(e) { callback() }
+            onError:function(e){callback()}
         })
         setTimeout(() => { this.canShowAd = true }, 1000 * 60 * 3)
     },
     initMobileStyle: function() {
-        if (window.orientation !== undefined) {
+        if (window.orientation !== undefined || window.innerHeight <= 722) {
             // это мобильный браузер 
-            document.querySelector('head').innerHTML += `<link rel="stylesheet" href="./TemplateData/m.style.css">`
+            if(document.querySelector('#mstyle') == null){
+                console.log(1)
+                document.querySelector('head').innerHTML += `<link id='mstyle' rel="stylesheet" href="./TemplateData/m.style.css">`
+            }
+        }
+        else{
+            console.log(2)
+            if(document.querySelector('#mstyle') != null){
+                console.log(3)
+                document.querySelector('#mstyle').remove()
+            }
         }
     }
 }
@@ -77,16 +103,28 @@ let gameTask = {
     questionSet: function(question) {
         this.timerContainer.innerHTML = ''
         this.currentQuestion = question
-        this.questionText.innerHTML = question.question
-        if (question.img == '' || question.img == NaN || question.img == undefined || question.img == null) {
-            this.questtionImage.style.display = 'none'
-        } else {
+        let right = question.answers[question.right]
+        //unsort answers
+        this.currentQuestion.answers = shuffle(this.currentQuestion.answers)
+        //console.log('right - ' + question.right)
+        for(let i = 0; i < question.answers.length; i++){
+            if(right == this.currentQuestion.answers[i]){
+                this.currentQuestion.right = i
+                //console.log(i)
+            }
+        }
+        //console.log('n_right - ' + this.currentQuestion.right)
+
+        this.questionText.innerHTML = this.currentQuestion.question
+        if (this.currentQuestion.img != '' || this.currentQuestion.img != NaN || this.currentQuestion.img != undefined) {
             this.questtionImage.style.display = 'block'
-            this.questtionImage.style.backgroundImage = `url('./ProjectData/QuizImg/${ question.img}')`
+            this.questtionImage.style.backgroundImage = `url('./ProjectData/QuizImg/${ this.currentQuestion.img}')`
+        } else {
+            this.questtionImage.style.display = 'none'
         }
 
         this.canSetAnswer = false
-        answer_showAnimateButtons(question.answers, 1, () => {
+        answer_showAnimateButtons(this.currentQuestion.answers, 1, () => {
             this.canSetAnswer = true
             gameTimer.play(projectData.game_data.questionTime, (time) => {
                 //console.log('timeout')
@@ -106,7 +144,7 @@ let gameTask = {
         this.currentQuestion = undefined
             //console.log('right')
         this.currentRecord += 1
-            //console.log(this.currentRecord)
+        //console.log(this.currentRecord)
             // next question
         if (this.currentRecord < this.questionsList.length) {
             this.frames.setState('right')
@@ -117,9 +155,9 @@ let gameTask = {
         }
         // game won
         else {
-            let isNew = record.set(this.categoryIndex, this.currentRecord)
-                //console.log( quiz[this.categoryIndex].category)
-            if (gameTimer.isRun) gameTimer.stop()
+            let isNew = record.set(this.categoryIndex , this.currentRecord)
+            //console.log( quiz[this.categoryIndex].category)
+            if(gameTimer.isRun) gameTimer.stop()
             document.querySelector('#category_win_text').innerHTML = quiz[this.categoryIndex].category
             this.frames.setState('win')
             this.isRun = false
@@ -128,7 +166,8 @@ let gameTask = {
     lose: function() {
         document.querySelector('#lose_record_text').innerHTML = `${this.currentRecord}/${this.questionsList.length}`
         document.querySelector('#lose_record_pesent').innerHTML = `${Math.round((this.currentRecord/this.questionsList.length)*100)}%`
-        let isNew = record.set(this.categoryIndex, this.currentRecord)
+        let isNew = record.set(this.categoryIndex , this.currentRecord)
+        //console.log(isNew)
         this.currentQuestion = undefined
             //console.log('false')
         this.frames.setState('lose')
@@ -200,13 +239,20 @@ let customSimpleTimer = {
 
 // game start logic
 function init() {
+    console.log(`
+🅼🅰🅳🅴 🅸🅽
+
+█▀█ █░█ █ ▀█   █▀▀ █▄░█ █▀▀ █ █▄░█ █▀▀
+▀▀█ █▄█ █ █▄   ██▄ █░▀█ █▄█ █ █░▀█ ██▄
+    `)
+
     window.onblur = onBlurGame
     window.onfocus = onFocusGame
         // load project data
     document.addEventListener('click', () => {
-        if (bgAudioPlayer != undefined) {
-            bgAudioPlayer.play()
-        }
+        //if (bgAudioPlayer != undefined) {
+        //    bgAudioPlayer.play()
+        //}
     })
 
 
@@ -234,10 +280,7 @@ function init() {
     })
     document.querySelector('#chose_backmenu').addEventListener('click', () => { showHide('#choseFrame', '#menuFrame') })
     document.querySelector('#record_backmenu').addEventListener('click', () => { showHide('#recordFrame', '#menuFrame') })
-    document.querySelector('#menu_record').addEventListener('click', () => {
-        showHide('#menuFrame', '#recordFrame');
-        recordDraw()
-    })
+    document.querySelector('#menu_record').addEventListener('click', () => { showHide('#menuFrame', '#recordFrame'); recordDraw() })
     document.querySelector('#settings_backmenu').addEventListener('click', () => { showHide('#settingsFrame', '#menuFrame') })
 
     if (!projectData.game_data.useLocalization && !projectData.game_data.isPlayMusick) {
@@ -261,15 +304,22 @@ function init() {
     }
     if (projectData.game_data.isPlayMusick) {
         let slider = document.querySelector('#volume')
-        slider.value = save.get('VOLUME', 5)
+        slider.value = save.get('VOLUME' , 50)
+        volumeSize = slider.value/100
+        //bgAudioPlayer = new Audio('./ProjectData/bgAudio.mp3')
+        //bgAudioPlayer.volume = parseFloat(slider.value/100)
+        //bgAudioPlayer.onended = function() { bgAudioPlayer.play() }
+        // web audio api
+        setTimeout(()=>{
+            loadSound('./ProjectData/bgAudio.mp3')
+            setVolume(slider.value/100)
+        },3500)
 
-        bgAudioPlayer = new Audio('./ProjectData/bgAudio.mp3')
-        bgAudioPlayer.volume = parseFloat(slider.value / 100)
-        bgAudioPlayer.onended = function() { bgAudioPlayer.play() }
-        slider.addEventListener('input', (value) => {
+        slider.addEventListener('input' , (value)=>{
             value = slider.value
-            save.set('VOLUME', value)
-            bgAudioPlayer.volume = parseFloat(value / 100)
+            save.set('VOLUME' , value)
+            setVolume(value/100)
+            //bgAudioPlayer.volume = parseFloat(value/100)
         })
     }
     //bgAudioPlayer.autoplay = true
@@ -289,20 +339,21 @@ function drawCategoryButton(index) {
 }
 
 function clickCategoryButton(index) {
-    if (quiz.length == 1) showHide('#menuFrame', '#gameFrame')
-    else showHide('#choseFrame', '#gameFrame')
+    if(quiz.length == 1)showHide('#menuFrame', '#gameFrame')
+    else showHide('#choseFrame' , '#gameFrame')
     gameTask.questionsList = quiz[index]
     console.log(index)
     gameTask.StartGame(index)
 }
 
-
 function onBlurGame(event) {
-    if (bgAudioPlayer != undefined) bgAudioPlayer.pause()
+    //if (bgAudioPlayer != undefined) bgAudioPlayer.pause()
+    MuteAudio(true)
 }
 
 function onFocusGame(event) {
-    if (bgAudioPlayer != undefined) bgAudioPlayer.play()
+    MuteAudio(false)
+    //if (bgAudioPlayer != undefined) bgAudioPlayer.play()
 }
 
 function showHide(hide, show, classData = 'frame') {
@@ -313,17 +364,16 @@ function showHide(hide, show, classData = 'frame') {
 function recordDraw() {
     let container = document.querySelector('#recordContainer')
     container.innerHTML = ''
-    let a = 0,
-        b = 0
-    for (let i = 0; i < quiz.length; i++) {
+    let a = 0 , b = 0
+    for(let i = 0; i< quiz.length; i++){
         container.innerHTML += `<div class="recordObj" style="color:${projectData.colors.fontColor};">
         <div class="Name text">${quiz[i].category}</div>
         <div class="RecordValue text">${record.get(i)}/${quiz[i].questions.length}</div>
     </div>`
-        a += quiz[i].questions.length
-        b += record.get(i)
+        a+= quiz[i].questions.length
+        b+= record.get(i)
     }
-    let result = Math.round(100 * b / a)
+    let result = Math.round(100*b/a)
     document.querySelector('#game_r_per').innerHTML = result
 }
 
@@ -349,14 +399,14 @@ function clickAnswer(index) {
 }
 
 function goToMenu() {
-    addManager.showInterstitial(function() {})
+    addManager.showInterstitial(function(){})
     addManager.review()
     gameTask.frames.setState('game')
     showHide("#gameFrame", "#menuFrame")
 }
 
 function restartGame() {
-    addManager.showInterstitial(() => {
+    addManager.showInterstitial(()=>{
         if (gameTask.categoryIndex != NaN || gameTask.categoryIndex != undefined) gameTask.StartGame(gameTask.categoryIndex)
     })
 }
@@ -366,7 +416,10 @@ function shuffle(array) {
 }
 
 
-window.addEventListener("DOMContentLoaded", (event) => {
+window.addEventListener("DOMContentLoaded", (event) => { 
     addManager.initMobileStyle()
-    init()
+    init() 
 });
+addEventListener('resize' , (event)=>{
+    addManager.initMobileStyle()
+})
