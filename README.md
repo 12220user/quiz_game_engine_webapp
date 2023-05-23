@@ -1,6 +1,6 @@
 # 🆀🆄🅸🆉 🅴🅽🅶🅸🅽🅴
 
-### Donwload last version [1.0.0.2](https://github.com/12220user/quiz_game_engine_webapp/release/tag/last)
+### Donwload last version [1.0.0.2](https://github.com/12220user/quiz_game_engine_webapp/releases/tag/last/1.0.0.2.zip)
 
 by 12220
 Version 1.0.0.2 realise
