@@ -8,7 +8,7 @@ Version 1.0.0.2 realise
 all changes make in game -> ProjectData -> projectData.js
 
 quiz object this all questions in game formated 
-```
+```json
 [
 // 1
     {
