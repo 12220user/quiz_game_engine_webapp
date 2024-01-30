@@ -1,0 +1,57 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background: #000;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    overflow: hidden;
+}
+
+.loader {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #000;
+    z-index: 100;
+}
+
+.loader .element {
+    margin: 5px;
+    width: 20px;
+    height: 20px;
+    border-radius: 100%;
+    background-color: var(--loader-color);
+}
+
+.loader .e1 {
+    animation: loopScale ease 900ms infinite 0ms;
+}
+
+.loader .e2 {
+    animation: loopScale ease 900ms infinite 150ms;
+}
+
+.loader .e3 {
+    animation: loopScale ease 900ms infinite 300ms;
+}
+
+@keyframes loopScale {
+    0%,
+    100% {
+        scale: 1;
+    }
+    50% {
+        scale: 0;
+    }
+}

@@ -1,0 +1,22 @@
+{
+    "ProductName": "",
+    "CompanyName": "",
+    "QuizEnterPoint": "quiz.json",
+    "media": {
+        "audio": {
+            "theme": "",
+            "click": "",
+            "right": "",
+            "false": "",
+            "timer_end": ""
+        },
+        "pictures": {
+            "logotype": "",
+            "background": "",
+            "game_background": "",
+            "quiz_data": {
+
+            }
+        }
+    }
+}
