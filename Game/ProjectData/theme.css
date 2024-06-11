@@ -1,0 +1,7 @@
+:root {
+    font-family: 'Impact';
+    --load-background: linear-gradient(0deg, rgb(7, 7, 41) 0%, rgb(39, 4, 23) 100%);
+    --loader-color: #ffffff;
+    --loader-title-color: #FFF;
+    --loader-title-size: 42px;
+}

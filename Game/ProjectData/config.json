@@ -1,0 +1,19 @@
+{
+    "GameName": "DemoGame",
+    "Author": "",
+    "Version": "",
+    "Source": {
+        "QuizEnterPoint": "./ProjectData/quiz.json",
+        "ImagesFolder": "./ProjectData/Images/",
+        "PreloadImages": {
+            "MenuBackgroundImage": ""
+        },
+        "AudioFolder": "./ProjectData/Audio/",
+        "Audio": []
+    },
+    "GameRules": {
+        "QuestionTime": 30,
+        "DragTimerStartTime": 5,
+        "UseFromYandesGames": true
+    }
+}
