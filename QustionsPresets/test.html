@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <button id="123" onclick="cl()">Click me</button>
+    <script>
+        function cl() {
+            var a = document.createElement("a");
+            a.href = window.URL.createObjectURL(new Blob([JSON.stringify({
+                "123": 1
+            }, true)], {
+                type: "text/json"
+            }));
+            a.download = "demo.json";
+            a.click();
+        }
+    </script>
+</body>
+
+</html>
