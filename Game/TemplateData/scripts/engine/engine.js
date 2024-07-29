@@ -22,7 +22,7 @@ class QuizEngine {
 by 12220user
 project github: 12220user/quiz_game_engine_webapp`)
         this.htmTabel = {}
-        this.htmTabel['start_screen'] = $('#start_load_screen')
+        this.htmTabel['start_screen'] = $('start_load_screen')
 
         // Add screens
         this.screenSwith = new ScreenSwitch()
@@ -45,6 +45,8 @@ project github: 12220user/quiz_game_engine_webapp`)
 
                 // END load game
                 this.screenSwith.ViewOnly('menu')
+                    // set menu data
+                this.SetMenuData()
             })
         })
 
@@ -70,5 +72,13 @@ project github: 12220user/quiz_game_engine_webapp`)
                 } catch { callback() }
             } else callback()
         })
+    }
+
+
+    SetMenuData() {
+        if (!this.config) return
+        $('#menu').style.backgroundImage = `url('${this.config.Source.Images.MenuBackgroundImage}')`
+        $('#menu_game_name').innerHTML = this.config.GameName
+        $('#menu_game_logotype').style.backgroundImage = `url('${this.config.Source.Images.LogotypeImage}')`
     }
 }

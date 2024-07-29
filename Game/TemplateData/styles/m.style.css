@@ -1,0 +1,46 @@
+/* portrait view*/
+
+@media screen and (orientation:portrait) {
+    #menu {
+        background-size: auto 100%;
+    }
+    #menu_game_logotype {
+        max-width: 250px;
+        min-width: 25%;
+        margin-bottom: 0%;
+        border-radius: 5vw;
+    }
+    #menu_game_name {
+        color: var(--game-tittle-color);
+        user-select: none;
+        font-size: 12vw;
+    }
+}
+
+@media screen and (orientation:portrait) and (max-width: 700px) {
+    #menu_game_logotype {
+        max-width: 50vh;
+        width: 70vw;
+        min-width: 35%;
+    }
+}
+
+
+/* Ultra wide monitor*/
+
+@media (min-width: 2000px) and (orientation:landscape) {
+    #menu {
+        background-size: 120% auto;
+    }
+    #menu_game_logotype {
+        max-width: 30vh;
+        width: 20vw;
+        min-width: 10%;
+        margin-bottom: 0;
+    }
+    #menu_game_name {
+        color: var(--game-tittle-color);
+        user-select: none;
+        font-size: 2vw;
+    }
+}

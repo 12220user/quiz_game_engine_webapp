@@ -1,12 +1,12 @@
 {
-    "GameName": "DemoGame",
+    "GameName": "DEMO GAME NAME",
     "Author": "",
     "Version": "",
     "Source": {
         "QuizEnterPoint": "./ProjectData/quiz.json",
-        "ImagesFolder": "./ProjectData/Images/",
-        "PreloadImages": {
-            "MenuBackgroundImage": ""
+        "Images": {
+            "MenuBackgroundImage": "./ProjectData/source/images/background.jpg",
+            "LogotypeImage": "./ProjectData/source/images/logotype.jpg"
         },
         "AudioFolder": "./ProjectData/Audio/",
         "Audio": []
