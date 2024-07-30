@@ -1,6 +1,8 @@
 * {
     margin: 0;
     padding: 0;
+    user-select: none;
+    font-family: var(--text-font-name);
 }
 
 body {
@@ -76,12 +78,13 @@ body {
     left: 0;
     right: 0;
     transition: 200ms;
+    width: 100%;
 }
 
 #menu {
     background-position: 50% 50%;
-    background-size: auto 100%;
-    background-repeat: no-repeat;
+    background-size: auto 130%;
+    background-repeat: repeat-x;
 }
 
 .menu_header {
@@ -89,26 +92,54 @@ body {
     height: 40%;
     display: flex;
     align-items: center;
-    justify-content: end;
+    justify-content: start;
     flex-direction: column;
+    padding-top: 20px;
 }
 
 #menu_game_name {
     color: var(--game-tittle-color);
-    user-select: none;
     font-size: 6vw;
     text-align: center;
-    max-height: 250px;
     width: 100%;
 }
 
 #menu_game_logotype {
-    max-width: 250px;
-    min-width: 15%;
     aspect-ratio: 1;
     margin-bottom: 2%;
     background-size: 100% 100%;
     background-repeat: no-repeat;
     background-position: 50% 50%;
     border-radius: 1vw;
+    height: 40vw;
 }
+
+
+.menu_navigation{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    
+    height: 60%;
+}
+
+button{
+    min-height: 40px;
+    font-size: 38px;
+    color: var(--button-text-color);
+    padding: 6px 25px;
+    border-radius: 5px;
+    border: none;
+    background: none;
+    cursor: pointer;
+}
+
+.menu_navigation button{
+    transition: 100ms;
+    margin-bottom: 20px;
+    background-color: var(--menu-button-color);
+    width: calc(200px + 10%);
+}
+

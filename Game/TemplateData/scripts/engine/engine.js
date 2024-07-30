@@ -42,11 +42,18 @@ project github: 12220user/quiz_game_engine_webapp`)
                 this.quiz_data_array = this.quiz_data_array.filter(item => item !== undefined);
 
 
+                // Load localize sheets
+                this.loader.AsuncLoadText(this.config['Source']['LocalizeSheets'], (data)=>{
+                    this.localizeData = (data.split("\r\n"))
+                    this.localizer = new Localizer(this.localizeData)
+                    this.localizer.LocalizeByID("EN")
 
-                // END load game
-                this.screenSwith.ViewOnly('menu')
+
+                    // END load game
+                    this.screenSwith.ViewOnly('menu')
                     // set menu data
-                this.SetMenuData()
+                    this.SetMenuData()
+                })
             })
         })
 

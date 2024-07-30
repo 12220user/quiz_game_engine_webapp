@@ -4,6 +4,7 @@
     "Version": "",
     "Source": {
         "QuizEnterPoint": "./ProjectData/quiz.json",
+        "LocalizeSheets":"./ProjectData/localize.csv",
         "Images": {
             "MenuBackgroundImage": "./ProjectData/source/images/background.jpg",
             "LogotypeImage": "./ProjectData/source/images/logotype.jpg"
